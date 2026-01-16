@@ -1,6 +1,6 @@
 // 1) Deploy the Google Apps Script as a Web App.
 // 2) Paste its URL below.
-const SCRIPT_URL = "YOUR_SCRIPT_URL"; // e.g. https://script.google.com/macros/s/XXXX/exec
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2xzr4eZg_JZdU3d7DuxDcAr-qaCqCH5bpoXNRRhnZyATKVeWFkuQt92CT_iXYQC7N/exec"; // e.g. https://script.google.com/macros/s/XXXX/exec
 
 let selectedScore = null;
 

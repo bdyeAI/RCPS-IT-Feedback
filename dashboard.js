@@ -1,5 +1,5 @@
 // Paste the same Google Apps Script Web App URL used in app.js
-const SCRIPT_URL = "YOUR_SCRIPT_URL";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2xzr4eZg_JZdU3d7DuxDcAr-qaCqCH5bpoXNRRhnZyATKVeWFkuQt92CT_iXYQC7N/exec";
 
 const meta = document.getElementById("meta");
 const labels = ["1","2","3","4","5"];

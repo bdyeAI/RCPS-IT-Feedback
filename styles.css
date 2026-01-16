@@ -1,0 +1,136 @@
+:root{
+  --bg:#0b1220;
+  --card:#101a33;
+  --text:#eef2ff;
+  --muted:#b9c2ff;
+  --border: rgba(255,255,255,.12);
+  --btn:#2b6cff;
+  --btn2:#1d4ed8;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 700px at 20% 10%, #182a5a 0%, var(--bg) 55%);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.card{
+  width:min(720px, 100%);
+  background: rgba(16,26,51,.9);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.35);
+}
+
+h1{margin:0 0 6px; font-size:26px;}
+.sub{margin:0 0 18px; color:var(--muted)}
+.q{margin:18px 0;}
+h2{font-size:16px; margin:0 0 10px; font-weight:650;}
+
+.hint{margin:10px 0 0; color:var(--muted); font-size:13px;}
+
+textarea{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background: rgba(255,255,255,.04);
+  color:var(--text);
+  padding:12px;
+  outline:none;
+}
+textarea:focus{border-color: rgba(43,108,255,.75)}
+
+.primary{
+  width:100%;
+  border:none;
+  border-radius:14px;
+  padding:12px 14px;
+  background: var(--btn);
+  color:white;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  transition: background .12s ease, transform .08s ease, opacity .12s ease;
+}
+.primary:hover{background: var(--btn2)}
+.primary:active{transform: scale(.99)}
+.primary:disabled{opacity:.5; cursor:not-allowed}
+
+.tiny{margin:12px 0 0; color:var(--muted); font-size:12px; text-align:center}
+
+/* Screen-reader-only utility */
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+/* ===== Custom smiley faces (cropped from one image) ===== */
+.faces{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap:10px;
+}
+
+.face-img{
+  width:100%;
+  aspect-ratio: 1 / 1;
+  border-radius:16px;
+  border:2px solid var(--border);
+  background-image: url("images/smiley-question.png");
+  background-repeat:no-repeat;
+  background-size: 500% 100%;
+  background-position-y: center;
+  background-color:#eaf4ff;
+  cursor:pointer;
+  transition: transform .10s ease, border-color .12s ease, box-shadow .12s ease;
+  position:relative;
+}
+
+/* Each face uses a different horizontal slice */
+.face-img.f1{ background-position-x:   0%; }
+.face-img.f2{ background-position-x:  25%; }
+.face-img.f3{ background-position-x:  50%; }
+.face-img.f4{ background-position-x:  75%; }
+.face-img.f5{ background-position-x: 100%; }
+
+.face-img:hover{ transform: translateY(-2px); }
+
+/* Animated selection */
+.face-img.selected{
+  border-color: rgba(43,108,255,.9);
+  box-shadow: 0 0 0 3px rgba(43,108,255,.25);
+  animation: pop .18s ease-out;
+}
+
+@keyframes pop{
+  0%{ transform: scale(1); }
+  60%{ transform: scale(1.04); }
+  100%{ transform: scale(1.01); }
+}
+
+.face-labels{
+  display:grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap:10px;
+  margin-top:8px;
+  text-align:center;
+  color: var(--muted);
+  font-size:12px;
+  line-height:1.15;
+}

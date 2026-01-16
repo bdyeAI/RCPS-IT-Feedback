@@ -1,8 +1,7 @@
-// Google Apps Script (Extensions -> Apps Script)
-// Stores CSAT responses in the active spreadsheet.
-// Deploy as Web App: Execute as Me, Access Anyone.
+// Paste this into Google Apps Script (Extensions -> Apps Script)
+// Deploy as a Web App (Execute as: Me, Access: Anyone)
 
-const SHEET_NAME = "Sheet1"; // rename if your sheet tab is different
+const SHEET_NAME = "Sheet1"; // change if your tab name differs
 
 function doPost(e) {
   try {

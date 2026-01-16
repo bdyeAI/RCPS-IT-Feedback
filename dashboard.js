@@ -1,10 +1,9 @@
-// Paste the same Google Apps Script Web App URL used in app.js
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2xzr4eZg_JZdU3d7DuxDcAr-qaCqCH5bpoXNRRhnZyATKVeWFkuQt92CT_iXYQC7N/exec";
 
 const meta = document.getElementById("meta");
-const labels = ["1","2","3","4","5"];
+const labels = ["1", "2", "3", "4", "5"];
 
-async function loadCounts(){
+async function loadCounts() {
   const res = await fetch(`${SCRIPT_URL}?mode=counts`, { mode: "cors" });
   const data = await res.json();
   if (!data.ok) throw new Error(data.error || "Failed to load counts");
@@ -22,11 +21,7 @@ async function loadCounts(){
     new Chart(barCtx, {
       type: "bar",
       data: { labels, datasets: [{ label: "Responses", data: counts }] },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
-      }
+      options: { responsive: true }
     });
 
     const donutCtx = document.getElementById("donutChart");
@@ -36,6 +31,6 @@ async function loadCounts(){
       options: { responsive: true }
     });
   } catch (e) {
-    meta.textContent = "Could not load dashboard data. Check SCRIPT_URL and Apps Script deployment.";
+    meta.textContent = "Could not load dashboard data.";
   }
 })();

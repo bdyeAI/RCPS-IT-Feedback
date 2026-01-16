@@ -1,34 +1,19 @@
-// 1) Deploy the Google Apps Script as a Web App.
-// 2) Paste its URL below.
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2xzr4eZg_JZdU3d7DuxDcAr-qaCqCH5bpoXNRRhnZyATKVeWFkuQt92CT_iXYQC7N/exec"; // e.g. https://script.google.com/macros/s/XXXX/exec
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2xzr4eZg_JZdU3d7DuxDcAr-qaCqCH5bpoXNRRhnZyATKVeWFkuQt92CT_iXYQC7N/exec";
 
 let selectedScore = null;
 
-const faces = document.querySelectorAll(".face-img");
+const faces = Array.from(document.querySelectorAll(".face"));
 const hint = document.getElementById("selectedHint");
-const ariaStatus = document.getElementById("ariaStatus");
 const submitBtn = document.getElementById("submitBtn");
 const commentsEl = document.getElementById("comments");
+const ariaStatus = document.getElementById("ariaStatus");
 
-// Optional: capture who the customer is, via querystring like ?customer=Acme&ticket=123
+// Optional context captured from URL: ?customer=...&ticket=...
 const params = new URLSearchParams(location.search);
 const customer = params.get("customer") || "";
 const ticket = params.get("ticket") || "";
 
-function labelForScore(score){
-  switch (score) {
-    case 1: return "Extremely Unsatisfied";
-    case 2: return "Unsatisfied";
-    case 3: return "Neutral";
-    case 4: return "Satisfied";
-    case 5: return "Extremely Satisfied";
-    default: return "";
-  }
-}
-
-function selectScore(score, btn){
-  selectedScore = score;
-
+function setSelected(btn) {
   faces.forEach(b => {
     b.classList.remove("selected");
     b.setAttribute("aria-checked", "false");
@@ -37,32 +22,32 @@ function selectScore(score, btn){
   btn.classList.add("selected");
   btn.setAttribute("aria-checked", "true");
 
-  const label = labelForScore(score);
-  hint.textContent = `Selected: ${label} (${score}/5)`;
-  ariaStatus.textContent = `Selected ${label}.`;
+  selectedScore = Number(btn.dataset.score);
   submitBtn.disabled = false;
+
+  const label = btn.getAttribute("aria-label") || `Score ${selectedScore}`;
+  hint.textContent = `Selected: ${label}`;
+  ariaStatus.textContent = `Selected ${label}.`;
 }
 
-faces.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const score = Number(btn.dataset.score);
-    selectScore(score, btn);
-  });
+faces.forEach((btn, idx) => {
+  btn.addEventListener("click", () => setSelected(btn));
 
-  // Keyboard support: Arrow keys to move within the radiogroup
   btn.addEventListener("keydown", (e) => {
-    const idx = Array.from(faces).indexOf(btn);
-    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+    const k = e.key;
+    if (k === "ArrowRight" || k === "ArrowDown") {
       e.preventDefault();
-      const next = faces[Math.min(idx + 1, faces.length - 1)];
-      next.focus();
-      selectScore(Number(next.dataset.score), next);
+      faces[(idx + 1) % faces.length].focus();
+      return;
     }
-    if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+    if (k === "ArrowLeft" || k === "ArrowUp") {
       e.preventDefault();
-      const prev = faces[Math.max(idx - 1, 0)];
-      prev.focus();
-      selectScore(Number(prev.dataset.score), prev);
+      faces[(idx - 1 + faces.length) % faces.length].focus();
+      return;
+    }
+    if (k === "Enter" || k === " ") {
+      e.preventDefault();
+      setSelected(btn);
     }
   });
 });

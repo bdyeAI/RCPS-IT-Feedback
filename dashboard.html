@@ -7,16 +7,20 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="card" aria-labelledby="dashTitle">
-    <h1 id="dashTitle">CSAT Dashboard</h1>
+  <main class="card" aria-labelledby="dash">
+    <h1 id="dash">CSAT Dashboard</h1>
     <p class="sub">Live results from your response sheet</p>
 
-    <div style="display:grid; gap:14px;">
-      <canvas id="barChart" height="140" aria-label="Bar chart of ratings" role="img"></canvas>
-      <canvas id="donutChart" height="140" aria-label="Doughnut chart of ratings" role="img"></canvas>
+    <div class="dash-grid">
+      <section class="dash-panel" aria-label="Bar chart">
+        <canvas id="barChart" height="140"></canvas>
+      </section>
+      <section class="dash-panel" aria-label="Doughnut chart">
+        <canvas id="donutChart" height="140"></canvas>
+      </section>
     </div>
 
-    <p class="tiny" id="meta" aria-live="polite"></p>
+    <p class="tiny" id="meta"></p>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

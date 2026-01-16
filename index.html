@@ -3,55 +3,52 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Support Feedback</title>
+  <title>RCPS IT Feedback</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <main class="card" aria-labelledby="title">
     <h1 id="title">Quick feedback</h1>
-    <p class="sub">How did we do today?</p>
+    <p class="sub">Please rate the support you received.</p>
 
-    <section class="q" aria-labelledby="q1">
+    <section class="q">
       <h2 id="q1">1) How satisfied are you with the service you received?</h2>
 
-      <div class="faces faces-custom" role="radiogroup" aria-label="Satisfaction rating">
-        <button class="face-img f1" data-score="1" role="radio" aria-checked="false" aria-label="Extremely Unsatisfied" type="button">
-          <span class="sr-only">Extremely Unsatisfied</span>
+      <div class="faces" role="radiogroup" aria-labelledby="q1">
+        <button class="face" type="button" data-score="1" role="radio" aria-checked="false" aria-label="Extremely Unsatisfied">
+          <span class="emoji" aria-hidden="true">😡</span>
+          <span class="label">Extremely Unsatisfied</span>
         </button>
-        <button class="face-img f2" data-score="2" role="radio" aria-checked="false" aria-label="Unsatisfied" type="button">
-          <span class="sr-only">Unsatisfied</span>
+        <button class="face" type="button" data-score="2" role="radio" aria-checked="false" aria-label="Unsatisfied">
+          <span class="emoji" aria-hidden="true">🙁</span>
+          <span class="label">Unsatisfied</span>
         </button>
-        <button class="face-img f3" data-score="3" role="radio" aria-checked="false" aria-label="Neutral" type="button">
-          <span class="sr-only">Neutral</span>
+        <button class="face" type="button" data-score="3" role="radio" aria-checked="false" aria-label="Neutral">
+          <span class="emoji" aria-hidden="true">😐</span>
+          <span class="label">Neutral</span>
         </button>
-        <button class="face-img f4" data-score="4" role="radio" aria-checked="false" aria-label="Satisfied" type="button">
-          <span class="sr-only">Satisfied</span>
+        <button class="face" type="button" data-score="4" role="radio" aria-checked="false" aria-label="Satisfied">
+          <span class="emoji" aria-hidden="true">🙂</span>
+          <span class="label">Satisfied</span>
         </button>
-        <button class="face-img f5" data-score="5" role="radio" aria-checked="false" aria-label="Extremely Satisfied" type="button">
-          <span class="sr-only">Extremely Satisfied</span>
+        <button class="face" type="button" data-score="5" role="radio" aria-checked="false" aria-label="Extremely Satisfied">
+          <span class="emoji" aria-hidden="true">😄</span>
+          <span class="label">Extremely Satisfied</span>
         </button>
-      </div>
-
-      <div class="face-labels" aria-hidden="true">
-        <div>Extremely<br/>Unsatisfied</div>
-        <div>Unsatisfied</div>
-        <div>Neutral</div>
-        <div>Satisfied</div>
-        <div>Extremely<br/>Satisfied</div>
       </div>
 
       <p class="hint" id="selectedHint">Select a face to continue.</p>
-      <p class="sr-only" id="ariaStatus" aria-live="polite"></p>
+      <p id="ariaStatus" class="sr-only" aria-live="polite"></p>
     </section>
 
-    <section class="q" aria-labelledby="q2">
-      <h2 id="q2">2) Additional comments (optional)</h2>
+    <section class="q">
+      <h2>2) Additional comments (optional)</h2>
       <textarea id="comments" rows="4" placeholder="Anything you'd like to add?"></textarea>
     </section>
 
     <button id="submitBtn" class="primary" disabled>Submit</button>
 
-    <p class="tiny">This survey takes ~5 seconds. Thank you!</p>
+    <p class="tiny">This survey takes about 5 seconds. Thank you!</p>
   </main>
 
   <script src="app.js"></script>
